@@ -19,10 +19,10 @@ requirements:
   host:
     - python
     - pip
-    - six>=1.8.0
+    - six >=1.8.0
   run:
     - python
-    - six>=1.8.0
+    - six >=1.8.0
 
 test:
   imports:
