@@ -1,5 +1,5 @@
 {% set name = "Represent" %}
-{% set version = "1.6.0" %}
+{% set version = "2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 293dfec8b2e9e2150a21a49bfec2cd009ecb600c8c04f9186d2ad222c3cef78a 
+  sha256: 0b2d015c14e7ba6b3b5e6a7ba131a952013fe944339ac538764ce728a75dbcac
 
 build:
  number: 7
@@ -29,6 +29,10 @@ requirements:
 test:
   imports:
     - represent
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/RazerM/represent
@@ -45,3 +49,4 @@ about:
 extra:
   recipe-maintainers:
     - simonvh
+    - zxdawn
