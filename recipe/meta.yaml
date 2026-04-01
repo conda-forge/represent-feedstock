@@ -3,28 +3,24 @@
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: "{{ version }}"
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 0b2d015c14e7ba6b3b5e6a7ba131a952013fe944339ac538764ce728a75dbcac
 
 build:
- number: 0
- script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  number: 1
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv"
 
 requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
   host:
-    - python
+    - python {{ python_min }}
     - pip
-    - six >=1.8.0
     - setuptools
   run:
-    - python
-    - six >=1.8.0
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +28,7 @@ test:
   commands:
     - pip check
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
